@@ -1,9 +1,7 @@
 #!/bin/bash
 
 #This script will add the Ubuntu-targeted NVIDIA drivers PPA, run an update
-#And then install the recommended package for this machine. Could be
-#Added to the the pre-stage scripts if applicable. 
-#Standalone installer for now
+#And then install the recommended package for this machine. 
 #Written by: William Russell for public use.
 #11/6/19
 
