@@ -4,7 +4,7 @@
 #And then install the recommended package for this machine. Could be
 #Added to the the pre-stage scripts if applicable. 
 #Standalone installer for now
-#Written by: William Russell for use in Duke University Heath system
+#Written by: William Russell for public use.
 #11/6/19
 
 #Ensure no pending updates:
