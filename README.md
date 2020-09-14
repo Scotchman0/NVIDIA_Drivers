@@ -34,3 +34,13 @@ While installing your NVIDIA drivers with this script, it asks you for a passwor
 Solution:
 Run the MOK manage script attached and assign a secureboot key (use the same key you used for the nvidia install). Note that secureboot key password does not need to be the same as the login for your admin or local account. (write it down somewhere). 
 The MOK script will kick off the MOK enrollment and restart your machine. select ENROLL keys and continue through prompts on blue screen, typing in this secureboot password finally and selecting restart. SECUREBOOT will be enrolled with this key, allowing access to the NVIDIA drivers, and it should restart will a solid resolution that's expected for your monitor. If not, re-run the NVIDIA_drivers install script again and restart. 
+
+
+to list what drivers are recommended for your build:
+> ubuntu-drivers devices | grep recommended
+
+It will return the recommended video driver for your machine.
+
+If ubuntu-drivers is not found, run the following command in terminal to install it:
+
+> sudo apt-get install ubuntu-drivers-common
