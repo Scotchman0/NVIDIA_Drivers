@@ -1,47 +1,38 @@
 #!/bin/bash
 
-#This script will add the Ubuntu-targeted NVIDIA drivers PPA, run an update
+#This script will add the Ubuntu-targeted NVIDIA drivers repo, run an update
 #And then install the recommended package for this machine. 
 #Written by: William Russell for public use.
-#11/6/19
+#updated 2/19/2021
 
 #Ensure no pending updates:
 apt-get update && apt upgrade -y
-sleep 3
+sleep 1
 clear
 
-#add the PPA
-add-apt-repository ppa:graphics-drivers/ppa
-sleep 2
-clear
+#add the repository for ubuntu-drivers and select recommended:
+sudo apt-get install ubuntu-drivers-common \
+	&& sudo ubuntu-drivers autoinstall
 
-#check for new updates:
-apt-get update
-sleep 2
-clear
+#comment out the above if you want to modify the version you get and uncomment the below to select during install:
+#install with sudo ubuntu-drivers install <package version>
 
-#scan for drivers:
-ubuntu-drivers devices
-sleep 5
-ubuntu-drivers autoinstall
-sleep 5
-clear
+#sudo ubuntu-drivers devices
 
 #blacklist the Nouveau driver so it doesn't initialize:
 sudo bash -c "echo blacklist nouveau > /etc/modprobe.d/blacklist-nvidia-nouveau.conf"
 sudo bash -c "echo options nouveau modeset=0 >> /etc/modprobe.d/blacklist-nvidia-nouveau.conf"
-sleep 2
+sleep 1
 cat /etc/modprobe.d/blacklist-nvidia-nouveau.conf
-sleep 4
+sleep 1
 clear
 
 #update the kernel to reflect changes:
 echo "updating initramfs..."
-sleep 3
+sleep 1
 sudo update-initramfs -u
 clear
 
 #end of script output
 echo "Script completed - NVIDIA drivers installed"
 echo "please restart your machine to initialize correctly"
-
