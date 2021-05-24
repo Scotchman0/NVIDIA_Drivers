@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#https://negativo17.org/nvidia-driver/
+#https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/
+#https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/3/
+
+sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-nvidia.repo
+
+dnf -y install nvidia-driver nvidia-settings
+
+echo "nvidia installed, now removing noveau"
+
+lspci -k | grep -A 2 VGA
