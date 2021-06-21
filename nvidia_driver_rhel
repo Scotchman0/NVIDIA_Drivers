@@ -11,3 +11,5 @@ dnf -y install nvidia-driver nvidia-settings
 echo "nvidia installed, now removing noveau"
 
 lspci -k | grep -A 2 VGA
+
+#More to follow here, this isn't finished - please refer to the links above for the "long way" if you're interested in the RHEL driver versions for now.
