@@ -1,15 +1,33 @@
 #!/bin/bash
 
-#https://negativo17.org/nvidia-driver/
-#https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/
-#https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/3/
+# https://www.linuxcapable.com/how-to-install-the-latest-nvidia-graphic-drivers-on-fedora-35-gnome-41/
 
-sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-nvidia.repo
+echo "be sure you run this with sudo rights, will necessiate a reboot at the last step and will force updates to your operating system"
+echo "please review the code before proceeding - to uninstall these drivers when/if needed - you can run the following line"
+echo "$ sudo dnf autoremove akmod-nvidia xorg-x11-drv-nvidia-cuda -y"
+echo "press return to begin script"
+read dummyfile
 
-dnf -y install nvidia-driver nvidia-settings
+#update base OS
+dnf upgrade --refresh -y
+dnf install dnf-plugins-core -y
 
-echo "nvidia installed, now removing noveau"
+#install/activate base-repos:
+dnf install \
+https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+dnf install \
+https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-lspci -k | grep -A 2 VGA
+# refresh DNF
+dnf update --refresh
 
-#More to follow here, this isn't finished - please refer to the links above for the "long way" if you're interested in the RHEL driver versions for now.
+#install the baseline driver set from akmod:
+dnf install akmod-nvidia
+
+#install the cuda drivers:
+dnf install xorg-x11-drv-nvidia-cuda
+
+echo "script completed, drivers installed - you should reboot your computer to re-initialize, will disable noveau automatically \n"
+echo "After reboot, run 'nvidia-smi' to validate nvidia drivers initialized properly"
+echo "you can also launch 'nvidia-settings' to review the acess panel options for the GPU"
+exit 0
