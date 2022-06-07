@@ -1,10 +1,13 @@
 #!/bin/bash
 
 # https://www.linuxcapable.com/how-to-install-the-latest-nvidia-graphic-drivers-on-fedora-35-gnome-41/
+# The link above is where these instructions were gathered from, the only thing that I am doing is automating it in a bash script
+# For faster installation. 
 
 echo "be sure you run this with sudo rights, will necessiate a reboot at the last step and will force updates to your operating system"
 echo "please review the code before proceeding - to uninstall these drivers when/if needed - you can run the following line"
 echo "$ sudo dnf autoremove akmod-nvidia xorg-x11-drv-nvidia-cuda -y"
+echo "The Noveau drivers will be disabled when this script completes (and if you run the above line will be re-enabled automatically)"
 echo "press return to begin script"
 read dummyfile
 
