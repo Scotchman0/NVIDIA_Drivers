@@ -7,6 +7,8 @@
 
 #announce permissions:
 echo "this script needs to be run with sudo, if you get errors unmounting, re-run with sudo permissions"
+echo "press return to kick-off"
+read dummyfile
 
 #get modules:
 echo "loaded nvidia modules"
