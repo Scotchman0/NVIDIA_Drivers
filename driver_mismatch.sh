@@ -15,7 +15,7 @@ echo "loaded nvidia modules"
 lsmod | grep ^nvidia | awk {'print $1'}
 
 #clear loop:
-for mod in $(lsmod | grep ^nvidia | awk {'print $1'}); do echo $mod; rmmod $mod
+for mod in $(lsmod | grep ^nvidia | awk {'print $1'}); do echo $mod; rmmod $mod; done
 
 #check for clear modules before starting services again:
 check=$(lsmod | grep ^nvidia)
