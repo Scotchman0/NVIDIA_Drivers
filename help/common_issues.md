@@ -62,3 +62,28 @@ you should get an empty string back. Then just confirm you can load the correct 
 
 If you continue to be unable to reload the module, restart the node or revalidate/re-install your driver set to ensure that there is no older modules being called by newer drivers. This is occasionally due to an install or update where the old versions were not fully purged during a cleanup process.
 
+
+
+# It's not working, I can't unload the modules
+Try unloading the graphical target by booting to multi-user (this unloads the dependencies on your graphics card and should allow you to remove the modules)
+`$ sudo systemctl set-default multi-user.target`
+once unloaded, reboot the machine, login at the terminal window (note that you will have no graphical interface, this is expected). Then find and re-run the scripted fix: `driver_mismatch.sh`, or follow steps above again.
+
+To reset your grapical target after you validate that things are working properly with `nvidia-smi` run:
+`$ sudo systemctl set-default graphical.target`
+
+If the above still does not work, I highly advise removing your NVIDIA installation - it is probable an older build is still being referenced:
+
+If you've installed via runfile at any point:
+`$ sudo /usr/bin/nvidia-uninstall`
+
+otherwise, purge the installation
+ ~~~
+ sudo apt remove nvidia-* -y
+ sudo apt autoremove
+ dpkg -l | grep nvidia
+ sudo apt remove <remaining-package-names-if-applicable>
+ lsmod | grep ^nvidia #there should be none loaded
+ ~~~
+ 
+ Then, re-install using the NVIDIA_drivers.sh script
