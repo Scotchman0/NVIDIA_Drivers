@@ -25,7 +25,20 @@ if [[ $? != 0 ]]; then
 elif [[ $check ]]; then
   echo "modules not entirely removed, may require manual removal."
   echo "here are the running modules, use pkill to stop the pids associated, then re-run"
-  lsof /dev/nvidia*
+  echo ""
+  echo "module list:"
+  lsmod | grep ^nvidia
+  echo ""
+  echo "processes possibly keeping nvidia engaged":
+  ps aux | grep nvidia | grep -v grep
+  echo ""
+  echo "if after re-running this script it continues to fail, try and manually unload all of the modules above one at a time"
+  echo "with: $ sudo rmmod <module-name>"
+  echo ""
+  echo "if you find that you still can't unload them (or one of them keeps the others loaded)"
+  echo "set multi-user.target, reboot and re-run: $ sudo systemctl set-default multi-user.target"
+  echo "to return to graphical: $ sudo systemctl set-default graphical.target (and then reboot)"
+  echo "in rare instances, it is required to fully uninstall nvidia drivers and re-install"
   exit 1
 else
   echo "modules removed successfully, restarting nvidia access"
