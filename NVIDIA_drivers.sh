@@ -14,8 +14,10 @@ clear
 sudo apt-get install ubuntu-drivers-common \
 	&& sudo ubuntu-drivers autoinstall
 
-#comment out the above if you want to modify the version you get and uncomment the below to select during install:
-#install with sudo ubuntu-drivers install <package version>
+#comment out the above if you want to modify the version you get and un-comment the below to select during install:
+#sudo ubuntu drivers-devices #list the available builds
+#sudo apt install <driver-version> -y ##example: sudo apt install nvidia-driver-470 -y
+
 
 #sudo ubuntu-drivers devices
 
