@@ -13,7 +13,7 @@ sleep 5
 sudo mokutil --disable-validation
 
 sleep 5
-echo "Key captured, Restarting system in 10 seconds"
-sleep 10
-sudo shutdown -r now
+echo "Key captured, Please Restart your system to finish the setup. During boot it will ask you to 'enroll key' where you will insert"
+echo "the password you just assigned. This will enable secureboot cached signatures for future updates"
+exit 0
 
