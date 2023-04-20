@@ -28,10 +28,11 @@ For example, in my installation I needed to also pull relevant drivers to match 
 `echo "export PATH=/usr/local/cuda-11.3/bin:$PATH" >> ~/.bashrc`
 
 8. Check that things are working properly:
-`nvcc --version`
+`nvcc --version` #should point at the newly installed cuda build
 `nvidia-smi`
 
 
 # Troubleshooting:
 - I have had some better success periodically using the RUNFILE option at the cuda download pages because it is self-contained.
 You can point your shell (step 6) at the new install the moment it's available
+- Note that `nvidia-smi` will print the *latest cuda version that the driver supports* not the version of cuda you have installed. 
