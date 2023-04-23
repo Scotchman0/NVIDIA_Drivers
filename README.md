@@ -20,7 +20,7 @@ A simple bash script for automatic install of the proper nvidia drivers on Debia
 
 # Other Scripts and what they do:
 
-- remove_tool.sh: Removes any and all `nvidia` associated packages with a for-loop running through `dpkg -l`. Very helpful for driver version rollbacks. You should basically be able to just run this and remove nvidia packages, then change to an earlier driver version if you find that a newer driver breaks your setup.
+- `remove_tool.sh`: Removes any and all `nvidia` associated packages with a for-loop running through `dpkg -l`. Very helpful for driver version rollbacks. You should basically be able to just run this and remove nvidia packages, then change to an earlier driver version if you find that a newer driver breaks your setup.
 
 - `purge_nvidia.sh` A much more involved big undo script: 
 [[Currently only works on ubuntu/deb/apt environments; calls dpkg/apt purge.]]
