@@ -34,6 +34,7 @@ case $option in
      *) clear
       echo "unexpected answer provided, exiting out"
       exit 1
+      ;;
 esac
 echo "cleanup completed, please ensure you re-install a graphics driver next BEFORE rebooting"
 exit 0
