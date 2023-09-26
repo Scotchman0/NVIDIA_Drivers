@@ -5,7 +5,7 @@ echo "note also that this script requires sudo to succeed, and will fail if you'
 echo "commands that are going to be run are: 'apt purge nvidia-*' 'apt autoremove' 'dpkg -l | grep nvidia' 'apt-get --purge remove <dpkg-name>'"
 echo "press enter to proceed, otherwise press ctrl+c to abort"
 read go_opt
-echo "proceeding with script; Would you like to allow the script to attempt to [a]utomatically remove elements (a|A) or would you prefer to [s]elect what to remove? (S|s)
+echo "proceeding with script; Would you like to allow the script to attempt to [a]utomatically remove elements (a|A) or would you prefer to [s]elect what to remove? (S|s)"
 case $option in
     a|A) clear
       echo "proceeding with cleanup"
