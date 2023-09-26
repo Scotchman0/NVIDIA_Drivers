@@ -17,6 +17,7 @@ case $option in
       echo "failure to install drivers at this stage may result in an unstable system configuration/no GUI on next boot"
       echo "if you intend to boot to CLI only for additional debugging, run: $ sudo systemctl set-default multi-user.target"
       exit 0
+      ;;
      s|S|) clear
       echo "Proceeding with manual removal option, please confirm y/n at all prompts to clean up"
       echo "commands that are going to be run are: 'apt purge nvidia-*' 'apt autoremove' 'dpkg -l | grep nvidia' 'apt-get --purge remove <dpkg-name>'"
@@ -29,6 +30,7 @@ case $option in
       echo "failure to install drivers at this stage may result in an unstable system configuration/no GUI on next boot"
       echo "if you intend to boot to CLI only for additional debugging, run: $ sudo systemctl set-default multi-user.target"
       exit 0
+      ;;
      *) clear
       echo "unexpected answer provided, exiting out"
       exit 1
