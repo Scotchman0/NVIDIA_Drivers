@@ -58,6 +58,17 @@ While installing your NVIDIA drivers with this script, it asks you for a passwor
 Run the MOK manage script attached and assign a secureboot key (use the same key you used for the nvidia install). Note that secureboot key password does not need to be the same as the login for your admin or local account. (write it down somewhere). 
 The MOK script will kick off the MOK enrollment and restart your machine. select ENROLL keys and continue through prompts on blue screen, typing in this secureboot password finally and selecting restart. SECUREBOOT will be enrolled with this key, allowing access to the NVIDIA drivers, and it should restart will a solid resolution that's expected for your monitor. If not, re-run the NVIDIA_drivers install script again and restart. 
 
+- Error: Apparently there is a new issue where Drivers past 450 can and will report a failure on installation or upgrade. When running `nvidia-smi` You may see "No Devices found". Reviewing `sudo dmesg | grep nvidia` you may see the following messaging:
+
+~~~
+[   13.732645] NVRM: GPU 0000:0b:00.0: RmInitAdapter failed! (0x26:0x56:1474)
+[   13.732697] BUG: unable to handle page fault for address: 0000000000004628
+[   13.732784] NVRM: GPU 0000:0b:00.0: rm_init_adapter failed, device minor number 0
+~~~
+
+- Solution: [See this NVIDIA blog entry](https://forums.developer.nvidia.com/t/solved-rminitadapter-failed-to-load-530-41-03-or-any-nvidia-modules-other-than-450-236-01-linux-via-esxi-7-0u3-passthrough-pci-gtx-1650/253239) but the solution appears to be to remove the `ubuntu-drivers` installed build of NVIDIA driver selected for your unit, and instead pull the latest .run installer bundle [from nvidia directly](https://www.nvidia.com/download/index.aspx?lang=en-us) and install it instead after removing all existing nvidia drivers. (use the purge_nvidia or remove_tool to clear prior to install). `sudo bash driver-name-here.run` then walk through the installer to agree to config setup. Should resolve. I'll be working on updating my scripts to detect this problem + auto-resolve it, and/or provide an alternative direct pull option since ubuntu-drivers may be problematic for latest gen installs moving forward.
+
+Feel free to open an issue if you run into other problems. Thanks for continued support/following of this repo.
 
 # Getting more information:
 to list what drivers are recommended for your build:
