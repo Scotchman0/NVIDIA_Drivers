@@ -11,11 +11,12 @@ sleep 1
 clear
 
 # check to confirm we can pull the required builds and abort if it does not suggest a version because we'll fail the next step otherwise:
-if [[ $(apt-cache-policy nvidia-driver nvidia-settings | grep "Candidate" | grep "none") ]]
+if [[ $(apt-cache policy nvidia-driver nvidia-settings | grep "Candidate" | grep "none") ]]
   then echo "unable to source candidates for required apt install - checking sources list"
     #see if the required repositories are enabled - we require `contrib` and `non-free` as part of default debian repo sources - if not , abort.
     if [[ ! $(grep "contrib" /etc/apt/sources.list | grep -v '^#') ]]
        then echo "required repository source not enabled: please review /etc/apt/sources.list:"
+            echo ""
             cat /etc/apt/sources.list
             echo ""
             echo "Please update the file /etc/apt/sources.list to include missing components: main contrib non-free non-free-firmware"
@@ -24,11 +25,10 @@ if [[ $(apt-cache-policy nvidia-driver nvidia-settings | grep "Candidate" | grep
             echo "deb-src http://deb.debian.org/debian <version>"
             echo "should look like: deb http://deb.debian.org/debian trixie main contrib non-free non-free-firmware"
             echo ""
-            echo "after making this change, run 'apt update' and re-try script"
+            echo "after making this change, re-try script"
             exit 1
     fi
 fi
-
 
 #install nvidia-detect for selection assist:
 sudo apt install nvidia-detect
