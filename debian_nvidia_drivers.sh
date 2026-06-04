@@ -64,7 +64,7 @@ case $option in
           echo "auto selecting default/latest - apt install nvidia-driver nvidia-smi nvidia-settings #to be installed"
           echo "press return to continue"
           read waitforreturn
-          sudo apt install nvidia-driver nvidia-smi nvidia-settings
+          sudo apt install nvidia-driver nvidia-smi nvidia-settings -y
           ;;
 esac
 
