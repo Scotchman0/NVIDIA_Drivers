@@ -4,23 +4,23 @@ A simple bash script for automatic install of the proper nvidia drivers on Debia
 # How to use this repository:
 1. Clone this repo: `git clone https://github.com/Scotchman0/NVIDIA_Drivers/`
 2. Enter the directory: `cd NVIDIA_Drivers`
-3. Run the install script: `sudo ./NVIDIA_drivers.sh` for ubuntu/deb/apt environments, or `sudo ./nvidia_driver_rhel.sh` for rhel/fedora/dnf/yum environments.
+3. Run the install script: `sudo ./ubuntu_nvidia_drivers.sh` for ubuntu/deb/apt environments, or `sudo ./debian_nvidia_drivers.sh` for debian builds, or `sudo ./rhel_nvidia_drivers.sh` for rhel/fedora/dnf/yum environments.
 4. Reboot your machine when prompted to re-initialize your platform with the latest driver available for your host.
 
 
-# The NVIDIA_drivers script will perform the following actions on your machine:
-1. Check for and perform base updates (sudo apt update && sudo apt upgrade -y)
-2. Add the PPA for "ubuntu-drivers" which handles NVIDIA driver installation repositories
+# The `*_nvidia_drivers.sh` scripts will perform the following actions on your machine:
+1. Check for and perform base updates (sudo apt update && sudo apt upgrade -y) (or yum updates)
+2. Add the PPA for `ubuntu-drivers` which handles NVIDIA driver repositories on ubuntu, or `nvidia-drivers` (debian) or `akmod-nvidia` (rhel)
 3. Run a request to check the hardware of your NVIDIA card
 4. Prompt for your selection of driver (or pressing return will select the recommended one)
-5. Blacklist the NOUVEAU driver baseline for default cards (often will cause nice new GPU's to boot into a graphic error)
+5. Blacklist the NOUVEAU driver baseline for default cards (leaving in place often will cause nice new GPU's to boot into a graphic error)
 6. Recompile the initramfs to include the new drivers and omit the old
 7. test with `nvidia-smi` for driver access, and then prompt you to restart
 
 
 # Other Scripts and what they do:
 
-- `remove_tool.sh`: Removes any and all `nvidia` associated packages with a for-loop running through `dpkg -l`. Very helpful for driver version rollbacks. You should basically be able to just run this and remove nvidia packages, then change to an earlier driver version if you find that a newer driver breaks your setup.
+- `remove_tool.sh`: Removes any and all `nvidia` associated packages with a for-loop running through `dpkg -l` (for ubuntu/debian). Very helpful for driver version rollbacks. You should basically be able to just run this and remove nvidia packages, then change to an earlier driver version if you find that a newer driver breaks your setup.
 
 - `purge_nvidia.sh` A much more involved big undo script: 
 [[Currently only works on ubuntu/deb/apt environments; calls dpkg/apt purge.]]
